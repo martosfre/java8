@@ -30,7 +30,8 @@ public class FilterExample {
 	 * @return
 	 */
 	public static List<Book> filterBooksByYear(List<Book> books, Integer year) {
-		return books.stream().filter(b -> b.getBooPublicationYear() > year).collect(toList());
+		return books.stream().filter(b -> b.getBooPublicationYear() > year)
+				.collect(toList());
 	}
 
 	/**
@@ -43,7 +44,33 @@ public class FilterExample {
 	 * @return
 	 */
 	public static List<Book> filterBooksByYearUnique(List<Book> books, Integer year) {
-		return books.stream().filter(b -> b.getBooPublicationYear() > year).distinct().collect(toList());
+		return books.stream().filter(b -> b.getBooPublicationYear() > year)
+				.distinct().collect(toList());
+	}
+
+	/**
+	 * Methodo to filter the books by year and return a subset of them.
+	 * 
+	 * @param books
+	 * @param year
+	 * @param numberOfBooks
+	 * @return
+	 */
+	public static List<Book> filterLimitBookByYear(List<Book> books, Integer year, Integer numberOfBooks) {
+		return books.stream().filter(b -> b.getBooPublicationYear() < year)
+				.limit(numberOfBooks).collect(toList());
+	}
+
+	/**
+	 * Method to filter the books by year and skip a number of elements.
+	 * @param books
+	 * @param year
+	 * @param skipNumber
+	 * @return
+	 */
+	public static List<Book> filterBooksByYear(List<Book> books, Integer year, int skipNumber) {
+		return books.stream().filter(b -> b.getBooPublicationYear() > 2002)
+				.skip(skipNumber).collect(toList());
 	}
 
 	/**
@@ -62,11 +89,17 @@ public class FilterExample {
 		System.out.println("Book Collections Initial");
 		books.stream().forEach(System.out::println);
 
-		System.out.println("\n\nFilter Books by Year:" + 2012);
+		System.out.println("\n\nFilter Books by Year older than:" + 2012);
 		FilterExample.filterBooksByYear(books, 2012).forEach(System.out::println);
 
-		System.out.println("\n\nFilter Books by Year:" + 2012 + " without duplicates");
+		System.out.println("\n\nFilter Books by Year older than:" + 2012 + " without duplicates");
 		FilterExample.filterBooksByYearUnique(books, 2012).forEach(System.out::println);
+
+		System.out.println("\n\nFilter Books by Year less than:" + 2006 + " and choose the first two books");
+		FilterExample.filterLimitBookByYear(books, 2006, 2).forEach(System.out::println);
+		
+		System.out.println("\n\nFilter the Book by Year older than:" + 2002 + " and skip the first two books");
+		FilterExample.filterBooksByYear(books, 2002, 2).forEach(System.out::println);
 
 	}
 
