@@ -3,6 +3,8 @@
  */
 package com.matoosfe.example.java8;
 
+import java.util.Objects;
+
 /**
  * Class to represents a Book Entity
  * 
@@ -94,4 +96,29 @@ public class Book {
 		this.booPublicationYear = booPublicationYear;
 	}
 
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(booName, booPublicationYear);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Book)) {
+			return false;
+		}
+		Book other = (Book) obj;
+		return Objects.equals(booName, other.booName) && booPublicationYear == other.booPublicationYear;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [booId=" + booId + ", booName=" + booName + ", booDescription=" + booDescription
+				+ ", booPublicationYear=" + booPublicationYear + "]";
+	}
+	
+	
 }
