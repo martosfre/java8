@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.matoosfe.example.java8.Book;
+import com.matoosfe.example.util.Book;
 
 /**
  * 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.matoosfe.example.java8.Book;
+import com.matoosfe.example.util.Book;
 
 /**
  * Class to show how to work with the Streams using the map operation

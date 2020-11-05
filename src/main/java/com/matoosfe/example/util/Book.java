@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.matoosfe.example.java8;
+package com.matoosfe.example.util;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ import java.util.Objects;
  *         <a href="mailto:cursos@matoosfe.com">Course Information</a><br>
  *         Quito - Ecuador
  */
-public class Book {
+public class Book implements Comparable<Book>{
 	private int booId;
 	private String booName;
 	private String booDescription;
@@ -118,6 +118,14 @@ public class Book {
 	public String toString() {
 		return "Book [booId=" + booId + ", booName=" + booName + ", booDescription=" + booDescription
 				+ ", booPublicationYear=" + booPublicationYear + "]";
+	}
+
+	/**
+	 * Method to order books by publication year
+	 */
+	@Override
+	public int compareTo(Book o) {
+		return booPublicationYear - o.getBooPublicationYear();
 	}
 	
 	
