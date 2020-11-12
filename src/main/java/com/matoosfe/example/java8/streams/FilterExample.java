@@ -74,6 +74,16 @@ public class FilterExample {
 	}
 
 	/**
+	 * Method to verify that string begin with a letter
+	 * 
+	 * @param value
+	 * @return
+	 */
+	public static boolean filterBooksByName(Book book) {
+		return book.getBooName().startsWith("Z");
+	}
+
+	/**
 	 * Method to filter the odd numbers without duplicates and print them from a
 	 * list of numbers.
 	 * 
@@ -125,8 +135,11 @@ public class FilterExample {
 		System.out.println("\n\nFilter Books by Year less than:" + 2006 + " and choose the first two books");
 		FilterExample.filterLimitBookByYear(books, 2006, 2).forEach(System.out::println);
 
-		System.out.println("\n\nFilter the Book by Year older than:" + 2002 + " and skip the first two books");
+		System.out.println("\n\nFilter Books by Year older than:" + 2002 + " and skip the first two books");
 		FilterExample.filterBooksByYear(books, 2002, 2).forEach(System.out::println);
+
+		System.out.println("\n\nFilter Books by Name that begin with a letter");
+		books.stream().filter(FilterExample::filterBooksByName).forEach(System.out::println);
 
 		System.out.println("\n\nFilter the odd numbers without duplicates and print from a number list ");
 		List<Integer> numberList = Arrays.asList(7, 8, 9, 10, 11, 12, 13, 15, 15, 16, 17, 1, 2, 3, 4, 5, 6, 19, 19, 20);

@@ -17,7 +17,7 @@ public class Book implements Comparable<Book>{
 	private int booId;
 	private String booName;
 	private String booDescription;
-	private int booPublicationYear;
+	private Integer booPublicationYear;
 
 	/**
 	 * Constructor to create a empty book
@@ -33,7 +33,7 @@ public class Book implements Comparable<Book>{
 	 * @param booDescription
 	 * @param booPublicationYear
 	 */
-	public Book(int booId, String booName, String booDescription, int booPublicationYear) {
+	public Book(int booId, String booName, String booDescription, Integer booPublicationYear) {
 		this.booId = booId;
 		this.booName = booName;
 		this.booDescription = booDescription;
@@ -85,14 +85,14 @@ public class Book implements Comparable<Book>{
 	/**
 	 * @return the booPublicationYear
 	 */
-	public int getBooPublicationYear() {
+	public Integer getBooPublicationYear() {
 		return booPublicationYear;
 	}
 
 	/**
 	 * @param booPublicationYear the booPublicationYear to set
 	 */
-	public void setBooPublicationYear(int booPublicationYear) {
+	public void setBooPublicationYear(Integer booPublicationYear) {
 		this.booPublicationYear = booPublicationYear;
 	}
 
