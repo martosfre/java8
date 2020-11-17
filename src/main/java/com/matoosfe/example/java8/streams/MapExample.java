@@ -53,6 +53,15 @@ public class MapExample {
 	public static List<Integer> getSquareNumbers(List<Integer> numbers) {
 		return numbers.stream().map(n -> n * n).collect(toList());
 	}
+	
+	/**
+	 * Method to convert a List<String> to a List<Integer>
+	 * @param values
+	 * @return
+	 */
+	public static List<Integer> convertStringToInt(List<String> values){
+		return values.stream().filter(v -> v.matches("[0-9]{1,3}")).map(v -> Integer.valueOf(v)).collect(toList());
+	}
 
 	public static void main(String[] args) {
 		List<Book> books = new ArrayList<>();
@@ -79,6 +88,12 @@ public class MapExample {
 
 		System.out.println("\n\nSquare Number List");
 		MapExample.getSquareNumbers(numbers).forEach(System.out::println);
+		
+		System.out.println("\n\nConvert a list of string to int");
+		List<String> values = Arrays.asList("A", "1", "3", "45", "CV", "123", "CCC", "4567");
+		MapExample.convertStringToInt(values).forEach(System.out::println);
+		
+		
 
 	}
 }

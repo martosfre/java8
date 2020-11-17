@@ -13,11 +13,12 @@ import java.util.Objects;
  *         <a href="mailto:cursos@matoosfe.com">Course Information</a><br>
  *         Quito - Ecuador
  */
-public class Book implements Comparable<Book>{
+public class Book implements Comparable<Book> {
 	private int booId;
 	private String booName;
 	private String booDescription;
 	private Integer booPublicationYear;
+	private Author author;
 
 	/**
 	 * Constructor to create a empty book
@@ -27,7 +28,8 @@ public class Book implements Comparable<Book>{
 	}
 
 	/**
-	 * Constructor to create a book with all attributes
+	 * Constructor to create a book with all attributes except author
+	 * 
 	 * @param booId
 	 * @param booName
 	 * @param booDescription
@@ -38,6 +40,24 @@ public class Book implements Comparable<Book>{
 		this.booName = booName;
 		this.booDescription = booDescription;
 		this.booPublicationYear = booPublicationYear;
+	}
+	
+	
+
+	/**
+	 * Constructor to create a book with all attributes.
+	 * @param booId
+	 * @param booName
+	 * @param booDescription
+	 * @param booPublicationYear
+	 * @param author
+	 */
+	public Book(int booId, String booName, String booDescription, Integer booPublicationYear, Author author) {
+		this.booId = booId;
+		this.booName = booName;
+		this.booDescription = booDescription;
+		this.booPublicationYear = booPublicationYear;
+		this.author = author;
 	}
 
 	/**
@@ -96,6 +116,19 @@ public class Book implements Comparable<Book>{
 		this.booPublicationYear = booPublicationYear;
 	}
 
+	/**
+	 * @return the author
+	 */
+	public Author getAuthor() {
+		return author;
+	}
+
+	/**
+	 * @param author the author to set
+	 */
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 
 	@Override
 	public int hashCode() {
@@ -127,6 +160,5 @@ public class Book implements Comparable<Book>{
 	public int compareTo(Book o) {
 		return booPublicationYear - o.getBooPublicationYear();
 	}
-	
-	
+
 }
