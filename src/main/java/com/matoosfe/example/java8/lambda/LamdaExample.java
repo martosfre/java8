@@ -66,16 +66,7 @@ public class LamdaExample {
 		
 		Predicate<String> preFilExt = (String s) -> s.endsWith("txt");
 		List<String> fileList = Arrays.asList("taxes.txt", "contract.doc", "montain.png");
-		LamdaExample.filter(fileList, preFilExt).forEach(System.out::println);;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-				
+		LamdaExample.filter(fileList, preFilExt).forEach(System.out::println);
+	
 	}
 }
