@@ -64,13 +64,10 @@ public class ReferenceMethodExample {
 		System.out.println("\nReference Method using instance method of existing object");
 		ReferenceMethodExample reference = new ReferenceMethodExample();
 		ConsumerExample.execute(books, reference::print);
-		
+
 		System.out.println("\nReference Method using constructor");
 		Book book = SupplierExample.create(Book::new);
 		System.out.println(book);
-		
-		
-
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.matoosfe.example.util.Author;
 import com.matoosfe.example.util.Book;
+import com.matoosfe.example.util.EnumOptional;
 
 /**
  * 
@@ -27,11 +28,11 @@ public class OptionalExample {
 	 * @param opc
 	 * @return
 	 */
-	public static Optional<Book> createOptional(Book book, int opc) {
+	public static Optional<Book> createOptional(Book book, EnumOptional option) {
 		Optional<Book> optBook = null;
-		if (opc == 1) {
+		if (option == EnumOptional.OPTIONAL_OF) {
 			optBook = Optional.of(book);
-		} else if (opc == 2) {
+		} else if (option == EnumOptional.OPTIONAL_NULLABLE) {
 			optBook = Optional.ofNullable(book);
 		} else {
 			optBook = Optional.empty();
@@ -63,14 +64,24 @@ public class OptionalExample {
 				.ifPresent(a -> System.out.println("Author Name:" + a.getAutName()));
 	}
 
+	public static String getNameByDefault() {
+		System.out.println("Generic author");
+		return "Generic Author";
+	}
+
 	public static void main(String[] args) {
 		Book book = new Book(1, "The Unique", "How to focus something and prioritize", 2012,
 				new Author(1, "Peter Kraig"));
 		Book bookTwo = null;
 
-		System.out.println("Book One:" + OptionalExample.createOptional(book, 1));
-		System.out.println("Book Two:" + OptionalExample.createOptional(book, 2));
-		System.out.println("Book Three:" + OptionalExample.createOptional(book, 3));
+		System.out.println("\nCreate Optional object from a object with value");
+		System.out.println("Book One:" + OptionalExample.createOptional(book, EnumOptional.OPTIONAL_OF));
+		System.out.println("Book Two:" + OptionalExample.createOptional(book, EnumOptional.OPTIONAL_NULLABLE));
+		System.out.println("Book Three:" + OptionalExample.createOptional(book, EnumOptional.OPTIONAL_EMPTY));
+
+		System.out.println("\nCreate Optional object from a null object");
+//		System.out.println("Book One:" + OptionalExample.createOptional(bookTwo, EnumOptional.OPTIONAL_OF)); //fail
+		System.out.println("Book Two:" + OptionalExample.createOptional(bookTwo, EnumOptional.OPTIONAL_NULLABLE));
 
 		System.out.println("\n\nVerify both object null and not null before Java 8");
 		OptionalExample.verifyNullBefore(book);
@@ -79,6 +90,18 @@ public class OptionalExample {
 		System.out.println("\n\nVerify both object null and not null in Java 8");
 		OptionalExample.verifyNullAfter(book);
 		OptionalExample.verifyNullAfter(bookTwo);
+
+		System.out.println("\n\nDifferences between orElse and orElseGet with null object");
+		Optional.ofNullable(bookTwo).map(b -> b.getAuthor()).map(a -> a.getAutName())
+				.orElse(OptionalExample.getNameByDefault());
+		Optional.ofNullable(bookTwo).map(b -> b.getAuthor()).map(a -> a.getAutName())
+		.orElseGet(OptionalExample::getNameByDefault);
+		
+		System.out.println("\n\nDifferences between orElse and orElseGet without null object");
+		Optional.ofNullable(book).map(b -> b.getAuthor()).map(a -> a.getAutName())
+				.orElse(OptionalExample.getNameByDefault());
+		Optional.ofNullable(book).map(b -> b.getAuthor()).map(a -> a.getAutName())
+		.orElseGet(OptionalExample::getNameByDefault);
 
 	}
 }
